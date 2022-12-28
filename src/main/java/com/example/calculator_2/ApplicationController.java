@@ -12,10 +12,10 @@ public class ApplicationController {
     private GridPane allButtons;
 
     @FXML
-    private Button findButton;
+    private Button calculateButton;
 
     @FXML
-    private Button findButton1;
+    private Button clearButton;
 
     @FXML
     private VBox getStudentData;
@@ -31,5 +31,11 @@ public class ApplicationController {
 
     @FXML
     private TextField inputLastName;
+
+    @FXML
+    private TextField outputPrintingCost;
+
+    @FXML
+    private Button saveButton;
 
 }

@@ -1,6 +1,8 @@
-.text-input {
-    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+.text-prompt {
+    -fx-background-color: #FFFFFF;
 }
-.text-input:focused {
-    -fx-prompt-text-fill: transparent;
+
+.text-prompt .placeholder .label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 1.666em;
 }
