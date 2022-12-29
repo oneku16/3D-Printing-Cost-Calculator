@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Checker {
-    private String dateFormat = "dd-MM-yyyy";
+    private String dateFormat = "yyyy-MM-dd";
 
     public boolean isValid(String dateStr) {
         DateFormat studentDate = new SimpleDateFormat(this.dateFormat);
@@ -22,3 +22,5 @@ public class Checker {
         this.dateFormat = dateFormat;
     }
 }
+
+
