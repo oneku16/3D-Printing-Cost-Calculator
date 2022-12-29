@@ -1,61 +1,81 @@
+/**
+ * Sample Skeleton for 'HomeMain.fxml' Controller Class
+ */
+
 package com.example.calculator_2;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 public class HomeController {
 
-    @FXML
+    @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
-    @FXML
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-    @FXML
-    private GridPane allButtons;
+    @FXML // fx:id="allButtons"
+    private GridPane allButtons; // Value injected by FXMLLoader
 
-    @FXML
-    private VBox getStudentData;
+    @FXML // fx:id="inputFilamentType"
+    private ComboBox<String> inputFilamentType; // Value injected by FXMLLoader
 
-    @FXML
-    private VBox getStudentData1;
+    @FXML // fx:id="inputFirstName"
+    private TextField inputFirstName; // Value injected by FXMLLoader
 
-    @FXML
-    private VBox getStudentData11;
+    @FXML // fx:id="inputIsAcademic"
+    private CheckBox inputIsAcademic; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField inputDate;
+    @FXML // fx:id="inputLastName"
+    private TextField inputLastName; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField inputFirstName;
+    @FXML // fx:id="inputMaterialLength"
+    private TextField inputMaterialLength; // Value injected by FXMLLoader
 
-    @FXML
-    private CheckBox inputIsAcademic;
+    @FXML // fx:id="inputPrintDate"
+    private DatePicker inputPrintDate; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField inputLastName;
+    @FXML // fx:id="inputPrintName"
+    private TextField inputPrintName; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField inputModelName;
+    @FXML // fx:id="inputTimeDays"
+    private Spinner<Integer> inputTimeDays; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField inputModelWeight;
+    @FXML // fx:id="inputTimeHours"
+    private Spinner<Integer> inputTimeHours; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField outputPrintingCost;
+    @FXML // fx:id="inputTimeMinutes"
+    private Spinner<Integer> inputTimeMinutes; // Value injected by FXMLLoader
 
-    public void checkAll(){
-        System.out.println(new Checker().isValid(inputDate.getText()));
+    @FXML // fx:id="outputPrintingCost"
+    private TextField outputPrintingCost; // Value injected by FXMLLoader
+
+    private boolean checkAll(){
+        String printDate = String.valueOf(inputPrintDate.getValue());
+        System.out.println(printDate);
+        return new HelperClass().isValidDate(printDate);
     }
     @FXML
     void calculateButtonOnAction(ActionEvent event) {
-        checkAll();
+
+        if (inputIsAcademic.isSelected()){
+            outputPrintingCost.setText("0 som");
+        }
+        else {
+            HelperClass helperClass = new HelperClass();
+            Double printTime = helperClass.properPrintTime(inputTimeDays.getValue(), inputTimeHours.getValue(), inputTimeMinutes.getValue());
+            Calculator calculator = new Calculator(Double.parseDouble(inputMaterialLength.getText()), printTime,inputFilamentType.getValue());
+            outputPrintingCost.setText(String.format("%d som", calculator.printCost()));
+
+        }
 
     }
 
@@ -65,23 +85,42 @@ public class HomeController {
     }
 
     @FXML
-    void saveButtonOnAction(ActionEvent event) {
+    void isAcademic(ActionEvent event) {
 
     }
 
     @FXML
+    void saveButtonOnAction(ActionEvent event) {
+
+    }
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert allButtons != null : "fx:id=\"allButtons\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert getStudentData != null : "fx:id=\"getStudentData\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert getStudentData1 != null : "fx:id=\"getStudentData1\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert getStudentData11 != null : "fx:id=\"getStudentData11\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputDate != null : "fx:id=\"inputDate\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputFirstName != null : "fx:id=\"inputFirstName\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputIsAcademic != null : "fx:id=\"inputIsAcademic\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputLastName != null : "fx:id=\"inputLastName\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputModelName != null : "fx:id=\"inputModelName\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert inputModelWeight != null : "fx:id=\"inputModelWeight\" was not injected: check your FXML file 'home_page.fxml'.";
-        assert outputPrintingCost != null : "fx:id=\"outputPrintingCost\" was not injected: check your FXML file 'home_page.fxml'.";
+        assert allButtons != null : "fx:id=\"allButtons\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputFilamentType != null : "fx:id=\"inputFilamentType\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputFirstName != null : "fx:id=\"inputFirstName\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputIsAcademic != null : "fx:id=\"inputIsAcademic\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputLastName != null : "fx:id=\"inputLastName\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputMaterialLength != null : "fx:id=\"inputMaterialLength\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputPrintDate != null : "fx:id=\"inputPrintDate\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputPrintName != null : "fx:id=\"inputPrintName\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputTimeDays != null : "fx:id=\"inputTimeDays\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputTimeHours != null : "fx:id=\"inputTimeHours\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert inputTimeMinutes != null : "fx:id=\"inputTimeMinutes\" was not injected: check your FXML file 'HomeMain.fxml'.";
+        assert outputPrintingCost != null : "fx:id=\"outputPrintingCost\" was not injected: check your FXML file 'HomeMain.fxml'.";
+
+        ObservableList<String> filamentTypes = FXCollections.observableArrayList("ABS", "PLA", "PTEG");
+        this.inputFilamentType.setItems(filamentTypes);
+        this.inputFilamentType.getSelectionModel().selectFirst();
+
+        SpinnerValueFactory<Integer> daysValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 7, 0);
+        this.inputTimeDays.setValueFactory(daysValueFactory);
+
+        SpinnerValueFactory<Integer> hoursValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0);
+        this.inputTimeHours.setValueFactory(hoursValueFactory);
+
+        SpinnerValueFactory<Integer> minutesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+        this.inputTimeMinutes.setValueFactory(minutesValueFactory);
 
     }
 

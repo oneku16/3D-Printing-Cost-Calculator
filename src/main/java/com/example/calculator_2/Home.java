@@ -10,8 +10,8 @@ import java.io.IOException;
 public class Home extends  Application{
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("home_page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 420);
+        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("HomeMain.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
 //        stage.setRoot(fxmlLoader);
         stage.setTitle("Version 3.3");
         stage.setResizable(false);
