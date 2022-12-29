@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 public class HomeController {
 
@@ -74,13 +75,23 @@ public class HomeController {
             Double printTime = helperClass.properPrintTime(inputTimeDays.getValue(), inputTimeHours.getValue(), inputTimeMinutes.getValue());
             Calculator calculator = new Calculator(Double.parseDouble(inputMaterialLength.getText()), printTime,inputFilamentType.getValue());
             outputPrintingCost.setText(String.format("%d som", calculator.printCost()));
-
         }
 
     }
 
     @FXML
     void clearButtonOnAction(ActionEvent event) {
+
+        inputFirstName.clear();
+        inputLastName.clear();
+        inputPrintName.clear();
+        inputMaterialLength.clear();
+        inputFilamentType.getSelectionModel().selectFirst();
+        inputTimeDays.getEditor().clear();
+        inputTimeHours.getEditor().clear();
+        inputTimeMinutes.getEditor().clear();
+        inputPrintDate.getEditor().clear();
+        outputPrintingCost.clear();
 
     }
 
