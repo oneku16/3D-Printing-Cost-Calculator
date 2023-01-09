@@ -66,7 +66,7 @@ public class HomeController {
     }
     @FXML
     void calculateButtonOnAction(ActionEvent event) {
-
+        System.out.println(inputPrintDate.getValue());
         if (inputIsAcademic.isSelected()){
             outputPrintingCost.setText("0 som");
         }
